@@ -1,4 +1,4 @@
-package com.test.demo.controller;
+package com.test.demo.checkDemo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 一个数据显示问题   关于map的
  * @author dell
@@ -15,12 +18,17 @@ import java.util.Set;
 public class MapBug {
 
 	
+	
+	private Logger logger=LoggerFactory.getLogger(MapBug.class);
+	
 	/**
 	 * 测试案例1
 	 */
 	
 	public static void main(String[] args) {
 		new MapBug().testSet();
+//		StringBuffer  buff=new StringBuffer(2147483648);
+	  	
 	}
 	public void testMap(){
 		List list=new ArrayList();

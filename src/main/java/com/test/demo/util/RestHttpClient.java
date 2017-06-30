@@ -1,6 +1,7 @@
 package com.test.demo.util;
 
 import java.io.IOException;
+import java.util.Map;
 
 import org.junit.Test;
 
@@ -46,6 +47,23 @@ public class RestHttpClient {
 			return JSONObject.toJSON(response.body().string());
 					}
 	}
+	/**
+	 * 得到map数据
+	 * @param url
+	 * @return
+	 * @throws IOException
+	 */
+	@SuppressWarnings("rawtypes")
+	public Map doGetMap(String url) throws IOException  {
+		
+		Request request=new  Request.Builder()
+				.url(url).build();
+		
+		try(Response response=client.newCall(request)
+					.execute()){
+			return  (Map)JSONObject.toJSON(response.body().string());
+					}
+	}
 	
 	/**
 	 * post方法 使用Ｓtring的方式传输数据　如果数据较大应该使用流的方式　
@@ -54,13 +72,32 @@ public class RestHttpClient {
 	 * @return
 	 * @throws IOException 
 	 */
-	public Object doPostＳString(String url,String json) throws IOException {
+	public Object doPostString(String url,String json) throws IOException {
 		
 		RequestBody requestBody=RequestBody.create(JSON, json);
 		Request request=new Request.Builder()
 				.url(url).post(requestBody).build();
 		try(Response response=client.newCall(request).execute()){
 			return JSONObject.toJSON(response.body().string());
+		}
+		
+	}
+	
+	/**
+	 * 得到map数据 
+	 * @param url
+	 * @param json
+	 * @return
+	 * @throws IOException
+	 */
+	@SuppressWarnings("rawtypes")
+	public Map doMapPostString(String url,String json) throws IOException {
+		
+		RequestBody requestBody=RequestBody.create(JSON, json);
+		Request request=new Request.Builder()
+				.url(url).post(requestBody).build();
+		try(Response response=client.newCall(request).execute()){
+			return (Map)JSONObject.toJSON(response.body().string());
 		}
 		
 	}
@@ -77,7 +114,7 @@ public class RestHttpClient {
 	public void test1(){
 		String string;
 		try {
-			string = new RestHttpClient().doGet("http://f.apiplus.net/cqssc.json").toString();
+			string = new RestHttpClient().doGet("http://f.apiplus.net/cqssc-1.json").toString();
 			System.out.println(string);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,12 +1,14 @@
 package com.test.demo.checkDemo;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,5 +63,20 @@ public class MapBug {
 		set.add("two");
 		map.put("list1", set);
 		System.out.println(map.get("list1").toString());
+	}
+	
+	@Test
+	public void testSort(){
+		List list =new ArrayList<Integer>();
+		list.add(1);
+		list.add(2);
+		list.add(3);
+		list.add(4);
+		list.add(5);
+		list.add(5);
+		Collections.sort(list);
+		for (int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
 }

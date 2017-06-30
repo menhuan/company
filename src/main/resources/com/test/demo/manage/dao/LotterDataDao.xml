@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+    <!DOCTYPE mapper  
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<!-- 彩票数据 -->            
+<mapper namespace="com.test.demo.manage.dao.LotterDataDao"> 
+
+		<!-- 保存彩票数据 -->
+		<insert id="saveLotterData"  parameterType="Map"  >
+			 INSERT  INTO cz_lottery_data_today (
+					expect,
+					open_code ,
+					open_time ,
+					open_time_stamp,
+					create_time
+ 			)values(
+		     	  # {expect},
+		          #{opencode},
+			      #{ opentime},
+			      #{ opentimestamp},
+			      #{ UNIX_TIMESTAMP()}
+			)
+			 
+		</insert>
+		
+		<!-- 保存排序的数据 -->
+		<insert id="saveLotterData"  parameterType="Map"  >
+			 insert into cz_lottery_num_sort (
+						last_expert,
+						last_open_time,
+						last_open_time_stmap,
+						lottery_num_sort,
+						some_group_num,
+						create_time
+			)VALUES(
+						lastExpert,
+						lastOpenTime,
+						lastOpenTimeStmap,
+						lotteryNumSort,
+						someGroupNum,
+						UNIX_TIMESTAMP()
+			)
+		</insert>
+		
+		<!-- 查询数据 -->
+		<select id="getLotterData" parameterType="Map" 
+			resultType="com.test.demo.manage.bean.LotteryDataTodayBean">
+			select 
+					id,
+					expect,
+					open_code as openCode,
+					open_time as openTime,
+					open_time_stamp as openTimeStamp,
+					FROM_UNIXTIME(create_time,'%Y-%m-%d %H:%m:%s')
+			from  cz_lottery_data_today 
+			<where>
+					<if test="opentimestamp!=null and opentimestamp!=''">
+						 open_time_stamp>=#{opentimestamp}	
+					</if>
+			</where>
+				<if test="group!=null and group !=''">
+					order by open_time_stamp desc limit #{group}
+				</if>
+		</select>
+
+
+</mapper>

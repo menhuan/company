@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+    <!DOCTYPE mapper  
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
+
+<!-- 彩票数据 -->            
+<mapper namespace="com.test.demo.mybaits.dao.ProductTableDao"> 
+
+		<!-- 查询数据 -->
+		<select id="selectTable" parameterType="Map" 
+			resultType="Map">
+			select 
+					table_name  sa tableName
+			from information_schema.tables
+			<where>
+					<if test="tableSchema!=null and tableSchema!=''">
+						 TABLE_SCHEMA=#{tableSchema}	
+					</if>
+			</where>
+				
+		</select>
+
+		<!-- 查询列信息 -->
+		<select id="selectColum" parameterType="Map" 
+			resultType="Map">
+			select * from information_schema.COLUMNS 
+			<where>
+					<if test="tableName!=null and tableName!=''">
+						 table_name=#{tableName}	
+					</if>
+			</where>
+				
+		</select>
+
+</mapper>

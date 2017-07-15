@@ -10,11 +10,11 @@
 		<select id="selectTable" parameterType="Map" 
 			resultType="Map">
 			select 
-					table_name  sa tableName
+					table_name  as tableName
 			from information_schema.tables
 			<where>
 					<if test="tableSchema!=null and tableSchema!=''">
-						 TABLE_SCHEMA=#{tableSchema}	
+						 table_schema=#{tableSchema}	
 					</if>
 			</where>
 				

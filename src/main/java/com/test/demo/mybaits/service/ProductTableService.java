@@ -18,7 +18,7 @@ import com.test.demo.mybaits.dao.ProductTableDao;
 
 /**
  * 生成javaBean实体类
- * @author dell
+ * @author fengruiqi
  *
  */
 @Service
@@ -45,7 +45,7 @@ public class ProductTableService {
 		/**
 		 * 引入的包名
 		 */
-		private static final String PACKAGENAME="package com.test.demo.bean"+"/n";
+		private static final String PACKAGENAME="package com.test.demo.bean;"+"\n";
 		
 		/**
 		 * 字段类型
@@ -65,7 +65,7 @@ public class ProductTableService {
 		/**
 		 * 换两行
 		 */
-		private static final String  LINE="/n/n";
+		private static final String  LINE="\n\n";
 		
 		/**
 		 * 类类型
@@ -78,17 +78,17 @@ public class ProductTableService {
 		@SuppressWarnings({ "rawtypes", "unchecked", "deprecation", "unused" })
 		public void ProduceBean(){
 			
-			StringBuffer  buffer=new StringBuffer();
-			
-			buffer.append(PACKAGENAME);
-			
+					
 			Map map= new  HashMap();
 			map.put("tableSchema", "com_study");
 			
 			List<Map> list=productTableDao.selectTable(map);
 			
 			for(Map table:list){
+				StringBuffer  buffer=new StringBuffer();
 				
+				buffer.append(PACKAGENAME);
+
 				String className= this.trance(ObjectUtils.toString(
 						table.get("tableName")), true);
 				
@@ -98,12 +98,16 @@ public class ProductTableService {
 				
 				for(Map columnMap:column){
 					
-					String columnName=this.trance(ObjectUtils.toString(columnMap.get("COLUMNNAME")),false);
+					String columnName=this.tranceVariable(ObjectUtils.toString(columnMap.get("COLUMN_NAME")));
 					String dateType=ObjectUtils.toString(columnMap.get("DATA_TYPE"));
+					dateType=this.tranceType(dateType);
 					String columnComment=ObjectUtils.toString(columnMap.get("COLUMN_COMMENT"));
-					buffer.append(BEANTYPE+dateType+ columnName +SEMICOLON);
+					buffer.append("/**"+columnComment+"*/"+"\n");
+					buffer.append(BEANTYPE+dateType+ SPACE+ columnName +SEMICOLON+LINE);
 					
 				}
+				
+				buffer.append("}");
 				
 				File file=new File(PATH+className+".java");
 				if(!file.exists()){
@@ -139,24 +143,54 @@ public class ProductTableService {
 	    public String trance(String content,boolean isDelete){
 	    	StringBuffer  buffer=new StringBuffer();
 	    	String[] contents=content.split("_");
-	    	int index=0;
+	    	int index=1;
 	    	
 	    	if(isDelete){
 	    		index+=1;
 	    		for(;index<contents.length;index++){
-	    			Character.isUpperCase( contents[index].charAt(0)); 
-	    			buffer.append(contents[index]);
+	    			String con=contents[index].toString();
+	    			con=con.replaceFirst(con.substring(0, 1), con.substring(0, 1).toUpperCase());
+	    		//	Character.isUpperCase( contents[index].charAt(0)); 
+	    			buffer.append(con);
 	    		}
 	    	}else{
 	    		for(;index<contents.length;index++){
-	    			Character.isUpperCase( contents[index].charAt(0)); 
-	    			buffer.append(contents[index]);
+	    			String con=contents[index].toString();
+	    			con=con.replaceFirst(con.substring(0, 1), con.substring(0, 1).toUpperCase());
+	    			buffer.append(con);
 	    		}
 	    	}
 	    	
 	    	return  buffer.append("Bean").toString();
 	    	
 	    }
+	    
+	    /**
+	     * 转换变量名称  表里面名称都是小写 id_name  这种类型  转换成为idName 这种类型
+	     * @param content  需要转换的内容
+	     * @return
+	     */
+	    public String tranceVariable(String content) {
+	    	
+	    	StringBuffer  buffer=new StringBuffer();
+	    	String[] contents=content.split("_");
+	    	
+	    	if(contents.length>1) {
+	    		buffer.append(contents[0].toString());
+		    	for(int index=1;index<contents.length;index++){
+	    			String con=contents[index].toString();
+	    			con=con.replaceFirst(con.substring(0, 1), con.substring(0, 1).toUpperCase());
+	    			buffer.append(con);
+	    		}
+	    	}else {
+	    		
+	    		return contents[0].toString();
+	    	}
+	    
+	    	
+	    	return buffer.toString();
+	    }
+	    
 	    
 	    /**
 	     * 转换类型  

@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ *
  * 一个数据显示问题   关于map的
  * @author dell
  *
@@ -65,7 +65,7 @@ public class MapBug {
 		System.out.println(map.get("list1").toString());
 	}
 	
-	@Test
+
 	public void testSort(){
 		List list =new ArrayList<Integer>();
 		list.add(1);

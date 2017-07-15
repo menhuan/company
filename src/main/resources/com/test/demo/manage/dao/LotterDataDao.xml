@@ -25,7 +25,7 @@
 		</insert>
 		
 		<!-- 保存排序的数据 -->
-		<insert id="saveLotterData"  parameterType="Map"  >
+		<insert id="saveLotterNumSort"  parameterType="Map"  >
 			 insert into cz_lottery_num_sort (
 						last_expert,
 						last_open_time,

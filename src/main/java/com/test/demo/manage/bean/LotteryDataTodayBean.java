@@ -3,6 +3,7 @@ package com.test.demo.manage.bean;
 /**
  * 彩票中间今日数据 会有一部分数据延迟
  * @author dell
+ * ssssssss
  *
  */
 public class LotteryDataTodayBean {

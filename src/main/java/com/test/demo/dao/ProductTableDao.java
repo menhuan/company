@@ -1,4 +1,4 @@
-package com.test.demo.mybaits.dao;
+package com.test.demo.dao;
 
 import java.util.List;
 import java.util.Map;

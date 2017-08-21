@@ -1,4 +1,4 @@
-package com.test.demo.mybaits.bean;
+package com.test.demo.bean;
 
 import java.util.List;
 import java.util.Map;

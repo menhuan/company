@@ -1,4 +1,4 @@
-package com.test.demo.mybaits.service;
+package com.test.demo.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,7 +14,8 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.test.demo.mybaits.dao.ProductTableDao;
+import com.test.demo.dao.ProductTableDao;
+
 
 /**
  * 生成javaBean实体类

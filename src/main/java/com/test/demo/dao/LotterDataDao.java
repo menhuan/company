@@ -1,10 +1,12 @@
-package com.test.demo.manage.dao;
+package com.test.demo.dao;
 
 import java.util.List;
 import java.util.Map;
 
-import com.test.demo.manage.bean.LotteryDataTodayBean;
-import com.test.demo.manage.bean.LotteryNumSortBean;
+import com.test.demo.bean.LotteryDataTodayBean;
+import com.test.demo.bean.LotteryNumSortBean;
+
+
 
 /**
  * 数据库接口

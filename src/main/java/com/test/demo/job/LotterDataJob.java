@@ -1,4 +1,4 @@
-package com.test.demo.manage.job;
+package com.test.demo.job;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.test.demo.manage.service.LotterDataService;
+import com.test.demo.service.LotterDataService;
+
 
 /**
  *实现彩票数据的job 

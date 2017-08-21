@@ -1,4 +1,4 @@
-package com.test.demo.manage.bean;
+package com.test.demo.bean;
 
 /**
  * 中奖号码排序

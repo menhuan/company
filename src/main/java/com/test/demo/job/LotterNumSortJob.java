@@ -1,4 +1,4 @@
-package com.test.demo.manage.job;
+package com.test.demo.job;
 
 import org.springframework.stereotype.Component;
 

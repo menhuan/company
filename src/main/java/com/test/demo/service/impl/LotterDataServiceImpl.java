@@ -1,4 +1,4 @@
-package com.test.demo.manage.service.impl;
+package com.test.demo.service.impl;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,10 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.test.demo.base.BaseCofig;
-import com.test.demo.manage.bean.LotteryDataTodayBean;
-import com.test.demo.manage.bean.LotteryNumSortBean;
-import com.test.demo.manage.dao.LotterDataDao;
-import com.test.demo.manage.service.LotterDataService;
+import com.test.demo.bean.LotteryDataTodayBean;
+import com.test.demo.bean.LotteryNumSortBean;
+import com.test.demo.dao.LotterDataDao;
 import com.test.demo.util.RestHttpClient;
 
 import okhttp3.Request.Builder;
@@ -27,7 +26,7 @@ import okhttp3.Request.Builder;
  *
  */
 @Service
-public class LotterDataServiceImpl  implements LotterDataService {
+public class LotterDataServiceImpl  implements com.test.demo.service.LotterDataService {
 
 	/**
 	 * 注入dao

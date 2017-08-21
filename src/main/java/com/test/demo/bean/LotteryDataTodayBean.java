@@ -1,4 +1,4 @@
-package com.test.demo.manage.bean;
+package com.test.demo.bean;
 
 /**
  * 彩票中间今日数据 会有一部分数据延迟
